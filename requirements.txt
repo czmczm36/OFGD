@@ -1,0 +1,52 @@
+# LLaVA 多主体 / POPE 管线依赖（ofgd 工程内 llava/ + 对比代码/spin 中的 LLaVA）
+#
+# ========== 查看 conda 环境 ofgd-llava 里装了什么 ==========
+# PowerShell / CMD（二选一）：
+#   conda activate ofgd-llava
+#   conda list
+#   pip list
+# 导出为 pip 格式（便于复现）：
+#   pip freeze > llava/requirements-from-conda.txt
+# 导出 conda 全量（含非 pip 包）：
+#   conda list -n ofgd-llava --export > llava/conda-ofgd-llava-export.txt
+#
+# ========== 安装建议 ==========
+# 1) 先按你机器 CUDA 装 PyTorch / torchvision，再装本文件其余依赖，例如：
+#    pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
+# 2) 再执行：
+#    pip install -r llava/requirements.txt
+#
+# 说明：run_multi_subject_caption.py 依赖工程根目录下「对比代码/spin」内的 LLaVA 代码；
+# spin 侧与 transformers 4.37 左右兼容（勿盲目升到 4.40+，除非你已验证 spin/LLaVA 可加载）。
+
+# ----- 深度学习核心 -----
+torch>=2.0.0,<2.5.0
+torchvision>=0.15.0,<0.21.0
+transformers>=4.36.0,<4.39.0
+tokenizers>=0.15.0,<0.20.0
+accelerate>=0.21.0,<0.35.0
+safetensors>=0.4.0
+sentencepiece>=0.1.99
+protobuf>=3.20.0,<5
+
+# ----- LLaVA / Vicuna 常见辅助 -----
+peft>=0.4.0,<0.12.0
+bitsandbytes>=0.41.0; platform_system != "Windows"
+einops>=0.6.0
+einops-exts>=0.0.4
+timm>=0.6.12
+
+# ----- 数据与工具 -----
+numpy>=1.21.0,<2.0.0
+pillow>=9.0.0
+tqdm>=4.64.0
+scipy>=1.10.0
+requests>=2.28.0
+pyyaml>=5.4.0
+
+# ----- 本仓库 POPE / 检测（llava_our.py、subject_ranker 等） -----
+ultralytics>=8.0.0
+
+# ----- 可选：与 five_methods 脚本对齐时可能用到 -----
+# matplotlib>=3.5.0
+# scikit-learn>=1.2.0
