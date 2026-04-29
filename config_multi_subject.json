@@ -1,0 +1,13 @@
+{
+    "model_path": "/mnt/d5f4cfb6-8afe-40a4-8650-2965046cd208/shuiyiboy/llava-v1.5-13b",
+    "model_base": null,
+    "vision_tower_path": "clip-vit-large-patch14-336",
+    "blip_model": "/mnt/d5f4cfb6-8afe-40a4-8650-2965046cd208/shuiyiboy/instructblip-vicuna-7b",
+    "results_file": "outputs/results.jsonl",
+    "ranking_file": "outputs/ranking_summary.json",
+    "images_dir": "images",
+    "output_dir": "outputs",
+    "output_file": "multi_subject_captions.jsonl",
+    "resume": true,
+    "seed_k": 5
+}
